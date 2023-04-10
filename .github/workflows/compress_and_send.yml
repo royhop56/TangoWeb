@@ -1,0 +1,47 @@
+# everytime you make a change to the repo's main branch github actions will
+# compress the specified folder and send the compressed files to the specified
+# slack channel
+
+# name of the workflow
+name: Compress and send files to Slack
+# controls when workflow will occur
+on:
+  push:
+    branches:
+      -main
+
+
+#describe steps of workflow
+jobs:
+  compress_and_send:
+  #choose proper runner image for server from
+  # list of "Supported runners and hardware resources"
+  # docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install zip
+        run: sudo apt-get install -y zip
+
+       # replace folder_to_compress with name of folder you want compressed
+      - name: Compress files
+        run: zip -r compressed_files.zip folder_to_compress
+
+        # replace slack-channel-name with name of slack channel that you want
+      - name: Send files to Slack
+        uses: 8398a7/action-slack@v3.5.0
+        with:
+          status: success
+          text: "New files have been comitted and compressed."
+          channel: web-dev
+        env:
+          SLACK_BOT_TOKEN: ${{secrets.SLACK_BOT_TOKEN}}
+
+          # go to slack workspace and create a new bot
+          # generate a new bot token for the bot and copy it
+          # in github repo, go to 'settings'> 'secrets' > 'new repository secret'
+          # name the secret 'SLACK_BOT_TOKEN' and paste the bot token that you copied in the previous step
+          # save secret
