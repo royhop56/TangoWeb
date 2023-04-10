@@ -17,7 +17,7 @@ jobs:
   #choose proper runner image for server from
   # list of "Supported runners and hardware resources"
   # docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
-    runs-on: Windows Server 2022 
+    runs-on: macos-latest
 
     steps:
       - name: Checkout code
