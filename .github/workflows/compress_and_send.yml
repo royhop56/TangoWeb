@@ -28,7 +28,7 @@ jobs:
 
        # replace folder_to_compress with name of folder you want compressed
       - name: Compress files
-        run: zip -r compressed_files.zip folder_to_compress
+        run: zip -r compressed_files.zip /Users/royhopkins/Projects/TangoWeb #folder_to_compress
 
         # replace slack-channel-name with name of slack channel that you want
       - name: Send files to Slack
