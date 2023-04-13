@@ -1,0 +1,22 @@
+name: Send Repo
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  send-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Compress repo
+        run: tar -czvf repo.tar.gz .
+      - name: Send repo to Slack
+        uses: 8398a7/action-slack-send-github-action@v2.2.0
+        with:
+          slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
+          channel: ${{ secrets.SLACK_CHANNEL }}
+          message: "New commit to repository"
+          files: |
+            repo.tar.gz
