@@ -18,4 +18,5 @@ jobs:
           slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
           channel: ${{ secrets.SLACK_CHANNEL }}
           message: "New commit to repository"
-          files: repo.tar.gz
+          files: |
+            repo.tar.gz
