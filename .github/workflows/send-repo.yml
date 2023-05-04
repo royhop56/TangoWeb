@@ -12,8 +12,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Compress repo
         run: tar -czvf repo.tar.gz .
-      - name: action-slack
-        uses: 8398a7/action-slack@v3.15.1
+      - name: Send file to Slack
+        uses: 8398a7/action-slack-send-file@v1
         with:
           slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
           channel: ${{ secrets.SLACK_CHANNEL }}
