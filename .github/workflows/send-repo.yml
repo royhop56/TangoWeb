@@ -15,6 +15,7 @@ jobs:
       - name: Send file to Slack
         uses: 8398a7/action-slack@v3
         with:
+          slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
           slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
           channel: ${{ secrets.SLACK_CHANNEL }}
           message: "New commit to repository"
