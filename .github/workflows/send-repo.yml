@@ -20,3 +20,4 @@ jobs:
           message: "New commit to repository"
           files: |
             repo.tar.gz
+          status: success
